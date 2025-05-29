@@ -26,7 +26,7 @@ describe('Nearby Gyms (e2e)', () => {
       })
 
     await request(app.server)
-      .post('/gyms')
+      .post('/gymsa')
       .set('Authorization', `Bearer ${token}`)
       .send({
         title: 'TypeScript Gym',
