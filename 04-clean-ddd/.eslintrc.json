@@ -1,12 +1,17 @@
 {
   "extends": [
     "@rocketseat/eslint-config/node",
-    "plugin:vitest-globals/recommended"
+    "plugin:vitest-globals/recommended",
+    "plugin:prettier/recommended"
   ],
+  "plugins": ["prettier"],
   "rules": {
     "no-useless-constructor": "off"
   },
   "env": {
-    "vitest-globals/env": true
+    "vitest-globals/env": true,
+    "browser": true,
+    "es2021": true,
+    "node": true
   }
 }
