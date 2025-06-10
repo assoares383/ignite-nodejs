@@ -22,13 +22,12 @@ describe('Edit Answer', () => {
     await inMemoryAnswersRepository.create(newAnswer)
 
     await sut.execute({
+      answerId: newAnswer.id.toValue(),
       authorId: 'author-1',
       content: 'Conteudo teste',
-      answerId: newAnswer.id.toValue(),
     })
 
     expect(inMemoryAnswersRepository.items[0]).toMatchObject({
-      title: 'Pergunta teste',
       content: 'Conteudo teste',
     })
   })
@@ -43,12 +42,12 @@ describe('Edit Answer', () => {
 
     await inMemoryAnswersRepository.create(newAnswer)
 
-    expect(() => {
-      return sut.execute({
+    await expect(
+      sut.execute({
         answerId: newAnswer.id.toValue(),
         authorId: 'author-2',
         content: 'Conteudo teste',
-      })
-    }).rejects.toBeInstanceOf(Error)
+      }),
+    ).rejects.toBeInstanceOf(Error)
   })
 })
