@@ -25,6 +25,10 @@ export class Answer extends Entity<AnswerProps> {
     return this.props.content
   }
 
+  get attachments() {
+    return this.props.attachments
+  }
+
   get createdAt() {
     return this.props.createdAt
   }
@@ -41,18 +45,24 @@ export class Answer extends Entity<AnswerProps> {
     this.props.updatedAt = new Date()
   }
 
+  set attachments(attachments: AnswerAttachmentList) {
+    this.props.attachments = attachments
+    this.touch()
+  }
+
   set content(content: string) {
     this.props.content = content
     this.touch()
   }
 
   static create(
-    props: Optional<AnswerProps, 'createdAt'>,
+    props: Optional<AnswerProps, 'createdAt' | 'attachments'>,
     id?: UniqueEntityID,
   ) {
     const answer = new Answer(
       {
         ...props,
+        attachments: props.attachments ?? new AnswerAttachmentList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,
