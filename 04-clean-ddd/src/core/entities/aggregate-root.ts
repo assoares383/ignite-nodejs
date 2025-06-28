@@ -9,7 +9,7 @@ export abstract class AggregateRoot<Props> extends Entity<Props> {
     return this._domainEvents
   }
 
-  protected addDOmainEvent(domainEvent: DomainEvent): void {
+  protected addDomainEvent(domainEvent: DomainEvent): void {
     this._domainEvents.push(domainEvent)
     DomainEvents.markAggregateForDispatch(this)
   }
