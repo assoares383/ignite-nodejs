@@ -1,8 +1,11 @@
 import { AuthenticateStudentUseCase } from "@/domain/forum/application/use-cases/authenticate-student";
+import { WrongCredentialsError } from "@/domain/forum/application/use-cases/errors/wrong-credentials-error";
 import {
+  BadRequestException,
   Body,
   Controller,
   Post,
+  UnauthorizedException,
   UsePipes
 } from "@nestjs/common";
 import z from "zod";
@@ -30,7 +33,14 @@ export class AuthenticateController {
     })
 
     if (result.isLeft()) {
-      throw new Error()
+      const error = result.value
+
+      switch (error.constructor) {
+        case WrongCredentialsError:
+          throw new UnauthorizedException(error.message)
+        default:
+          throw new BadRequestException(error.message)
+      }
     }
 
     const { accessToken } = result.value
