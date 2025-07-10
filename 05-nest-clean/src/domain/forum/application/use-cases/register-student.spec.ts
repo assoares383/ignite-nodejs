@@ -4,6 +4,7 @@ import { RegisterStudentUseCase } from './register-student'
 
 let inMemoryStudentsRepository: InMemoryStudentsRepository
 let fakeHasher: FakeHasher
+
 let sut: RegisterStudentUseCase
 
 describe('Register Student', () => {

@@ -6,8 +6,8 @@ POST {{ baseUrl }}/accounts
 Content-Type: application/json
 
 {
-  "name": "John Doe 2",
-  "email": "johndoe2@example.com.br",
+  "name": "John Doe 3",
+  "email": "johndoe3@example.com.br",
   "password": "12345678"
 }
 
@@ -18,8 +18,8 @@ POST {{ baseUrl }}/sessions
 Content-Type: application/json
 
 {
-  "email": "alexandres.soares2@hotmail.com",
-  "password": "12345678910"
+  "email": "johndoe2@example.com.br",
+  "password": "12345678"
 }
 
 ###
@@ -30,8 +30,8 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "title": "Nova pergunta 3",
-  "content": "Conteudo da pergunta 3"
+  "title": "Nova pergunta 5",
+  "content": "Conteudo da pergunta 5"
 }
 
 ###
