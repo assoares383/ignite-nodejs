@@ -1,6 +1,7 @@
 import { AnswerQuestionUseCase } from "@/domain/forum/application/use-cases/answer-question";
 import { AuthenticateStudentUseCase } from "@/domain/forum/application/use-cases/authenticate-student";
 import { ChooseQuestionBestAnswerCase } from "@/domain/forum/application/use-cases/choose-question-best-answer";
+import { CommentOnQuestionUseCase } from "@/domain/forum/application/use-cases/comment-on-question";
 import { CreateQuestionUseCase } from "@/domain/forum/application/use-cases/create-question";
 import { DeleteAnswerUseCase } from "@/domain/forum/application/use-cases/delete-answer";
 import { DeleteQuestionUseCase } from "@/domain/forum/application/use-cases/delete-question";
@@ -16,6 +17,7 @@ import { DatabaseModule } from "../database/database.module";
 import { AnswerQuestionController } from "./controllers/answer-question.controller";
 import { AuthenticateController } from "./controllers/authenticate.controller";
 import { ChooseQuestionBestAnswerController } from "./controllers/choose-question-best-answer.controller";
+import { CommentOnQuestionController } from "./controllers/comment-on-question.controller";
 import { CreateAccountController } from "./controllers/create-account.controller";
 import { CreateQuestionController } from "./controllers/create-question.controller";
 import { DeleteAnswerController } from "./controllers/delete-answer.controller";
@@ -40,7 +42,8 @@ import { GetQuestionBySlugController } from "./controllers/get-question-by-slug.
     EditAnswerController,
     DeleteAnswerController,
     FetchQuestionAnswersController,
-    ChooseQuestionBestAnswerController
+    ChooseQuestionBestAnswerController,
+    CommentOnQuestionController
   ],
   providers: [
     CreateQuestionUseCase,
@@ -54,7 +57,8 @@ import { GetQuestionBySlugController } from "./controllers/get-question-by-slug.
     EditAnswerUseCase,
     DeleteAnswerUseCase,
     FetchQuestionAnswersUseCase,
-    ChooseQuestionBestAnswerCase
+    ChooseQuestionBestAnswerCase,
+    CommentOnQuestionUseCase
   ]
 })
 export class HttpModule { }
