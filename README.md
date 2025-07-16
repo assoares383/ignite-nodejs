@@ -55,4 +55,4 @@ Aqui você encontrará aplicações backend modernas, com foco em boas práticas
 4. Copie o .env.example para .env e configure as variáveis
 
 5. Rode a aplicação:
-   npm run dev ou pnpm dev
+   - npm run dev ou pnpm dev
