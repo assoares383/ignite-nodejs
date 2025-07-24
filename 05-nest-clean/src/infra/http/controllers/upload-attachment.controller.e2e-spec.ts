@@ -4,6 +4,7 @@ import { INestApplication } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { Test } from "@nestjs/testing";
 import request from "supertest";
+import { QuestionFactory } from "test/factories/make-question";
 import { StudentFactory } from "test/factories/make-student";
 
 describe("Upload attachments (E2E)", () => {
@@ -14,7 +15,7 @@ describe("Upload attachments (E2E)", () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory]
+      providers: [StudentFactory, QuestionFactory]
     }).compile();
 
     app = moduleRef.createNestApplication();
@@ -31,10 +32,13 @@ describe("Upload attachments (E2E)", () => {
     const accessToken = jwt.sign({ sub: user.id.toString() });
 
     const response = await request(app.getHttpServer())
-      .post("/attachments")
-      .set("Authorization", `Bearer ${accessToken}`)
-      .attach('file', './test/e2e/sample-upload.png');
+      .post('/attachments')
+      .set('Authorization', `Bearer ${accessToken}`)
+      .attach('file', './test/e2e/sample-upload.png')
 
-    expect(response.statusCode).toBe(201);
+    expect(response.statusCode).toBe(201)
+    expect(response.body).toEqual({
+      attachmentId: expect.any(String),
+    })
   });
 });

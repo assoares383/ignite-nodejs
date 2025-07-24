@@ -8,13 +8,11 @@ import { EnvService } from "../env/env.service";
 export class R2Storage implements Uploader {
   private client: S3Client
 
-  constructor(
-    private envService: EnvService
-  ) {
-    const accountID = envService.get('CLOUDFLARE_ACCOUNT_ID')
+  constructor(private envService: EnvService) {
+    const accountId = envService.get('CLOUDFLARE_ACCOUNT_ID')
 
     this.client = new S3Client({
-      endpoint: `https://${accountID}.r2.cloudflare.com`,
+      endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
       region: 'auto',
       credentials: {
         accessKeyId: envService.get('AWS_ACCESS_KEY_ID'),
